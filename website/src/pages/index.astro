@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/widgets/Hero.astro'
+import Features from '../components/widgets/Features.astro'
+import Philosophy from '../components/widgets/Philosophy.astro'
+import Showcase from '../components/widgets/Showcase.astro'
+import CTA from '../components/widgets/CTA.astro'
+
+const metadata = {
+  title: 'jaRule - Master of All Things Smooth',
+  description: 'The most opinionated dotfiles in the Joloverse. Transform any machine into a legendary development environment in under 5 minutes.',
+  canonical: 'https://jarule.dev',
+}
+---
+
+<Layout metadata={metadata}>
+  <Hero />
+  
+  <Features id="features" />
+  
+  <Philosophy />
+  
+  <Showcase />
+  
+  <CTA />
+</Layout>

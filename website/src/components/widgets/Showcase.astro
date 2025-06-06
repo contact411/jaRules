@@ -1,0 +1,170 @@
+---
+// This will showcase the actual dotfiles configurations
+---
+
+<section id="showcase" class="py-20 bg-gradient-to-b from-background to-card/50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">
+        See jaRule in Action
+      </h2>
+      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+        Witness the opinionated excellence in every configuration file and command
+      </p>
+    </div>
+
+    <!-- Configuration showcases -->
+    <div class="space-y-16">
+      <!-- Git configuration showcase -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="order-2 lg:order-1">
+          <h3 class="text-2xl font-bold mb-4">Git Mastery</h3>
+          <p class="text-muted-foreground mb-6">
+            Modern security standards with Ed25519 keys, GPG signing, and performance optimizations. 
+            Over 30 legendary aliases that make version control feel like poetry.
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Ed25519 SSH keys (faster & more secure than RSA)
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              GPG commit signing for authenticity
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Delta integration for beautiful diffs
+            </li>
+          </ul>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <code class="text-green-400 text-sm font-mono">
+              <div class="text-yellow-400"># jaRule's legendary Git aliases</div>
+              <div class="mt-2">git sync    <span class="text-gray-400"># Fetch & rebase on main</span></div>
+              <div>git cleanup <span class="text-gray-400"># Remove merged branches</span></div>
+              <div>git lg      <span class="text-gray-400"># Beautiful log with graph</span></div>
+              <div>git amendf  <span class="text-gray-400"># Amend without editing</span></div>
+            </code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shell configuration showcase -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <code class="text-green-400 text-sm font-mono">
+              <div class="text-yellow-400">$ </div>
+              <div class="text-blue-400">⚡ jarule@legendary</div> <span class="text-purple-400">~/dev/project</span> <span class="text-yellow-400">main</span>
+              <div class="mt-2 text-green-400">$ ll</div>
+              <div class="text-cyan-400">📁 src/     📄 package.json  🔧 tsconfig.json</div>
+              <div class="mt-2 text-green-400">$ serve</div>
+              <div class="text-gray-400">🚀 HTTP server running on port 8000</div>
+            </code>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Shell Perfection</h3>
+          <p class="text-muted-foreground mb-6">
+            Starship prompt with Catppuccin theme, 100+ intelligent aliases with modern tool replacements,
+            and powerful utility functions that enhance your daily workflow.
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              exa instead of ls (with icons & colors)
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              bat instead of cat (syntax highlighting)
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              fd instead of find (5x faster searching)
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Node.js configuration showcase -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="order-2 lg:order-1">
+          <h3 class="text-2xl font-bold mb-4">Node.js Excellence</h3>
+          <p class="text-muted-foreground mb-6">
+            fnm (Fast Node Manager) for 40x faster version switching, XDG-compliant npm configuration,
+            and curated global packages for modern development.
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              fnm over nvm (40x faster, Rust-powered)
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              @antfu/ni for universal package management
+            </li>
+            <li class="flex items-center text-sm">
+              <svg class="w-4 h-4 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              Security-optimized npm configuration
+            </li>
+          </ul>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <code class="text-green-400 text-sm font-mono">
+              <div class="text-yellow-400"># jaRule's npm configuration</div>
+              <div class="mt-2">audit-level=moderate</div>
+              <div>save-exact=true</div>
+              <div>prefer-offline=true</div>
+              <div class="mt-2 text-yellow-400"># Global packages</div>
+              <div>@antfu/ni          <span class="text-gray-400"># Universal package manager</span></div>
+              <div>typescript         <span class="text-gray-400"># Type safety</span></div>
+              <div>@biomejs/biome      <span class="text-gray-400"># Ultra-fast linting</span></div>
+            </code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance metrics -->
+    <div class="mt-20 text-center">
+      <div class="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto border border-primary/20">
+        <h3 class="text-2xl font-bold mb-8 gradient-text">Performance That Speaks for Itself</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-primary mb-2">40x</div>
+            <div class="text-sm text-muted-foreground">Faster Node.js switching with fnm</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-primary mb-2">5x</div>
+            <div class="text-sm text-muted-foreground">Faster file searching with fd</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-primary mb-2">10x</div>
+            <div class="text-sm text-muted-foreground">Faster content search with ripgrep</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,110 @@
+---
+const features = [
+  {
+    title: "Node.js Excellence",
+    description: "fnm (Fast Node Manager) for blazing speed, XDG-compliant npm with security optimizations, curated global packages",
+    icon: "⚡",
+    details: ["40x faster than nvm", "XDG Base Directory compliance", "Curated essential packages"]
+  },
+  {
+    title: "Git Mastery", 
+    description: "Ed25519 keys, GPG signing, delta integration, comprehensive .gitignore, legendary aliases for enhanced workflow",
+    icon: "🚀",
+    details: ["Modern cryptography", "Beautiful diffs with delta", "100+ aliases and functions"]
+  },
+  {
+    title: "Shell Perfection",
+    description: "Starship prompt with Catppuccin theme, intelligent aliases with modern replacements, powerful utility functions",
+    icon: "🎨", 
+    details: ["Sub-second startup", "Modern tool replacements", "Cross-shell compatibility"]
+  },
+  {
+    title: "VSCode Perfection",
+    description: "Opinionated settings template, curated AI-enhanced extensions, Catppuccin theme integration",
+    icon: "🛠️",
+    details: ["50+ curated extensions", "AI assistant integration", "Productivity optimized"]
+  },
+  {
+    title: "Security First",
+    description: "Template-based configurations with secure variable substitution, zero hardcoded secrets, comprehensive protection",
+    icon: "🔒",
+    details: ["Zero hardcoded secrets", "Template-based security", "Modern key management"]
+  },
+  {
+    title: "Cross-Platform",
+    description: "True platform parity across macOS, Linux, and Windows with intelligent adaptations and native integrations",
+    icon: "🌍",
+    details: ["macOS, Linux, Windows", "Native tool integration", "Platform-specific optimizations"]
+  }
+]
+---
+
+<section id="features" class="py-20 bg-gradient-to-b from-background to-card/50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">
+        Legendary Features
+      </h2>
+      <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+        Every component has been meticulously crafted to represent the pinnacle of development environment configuration
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <div class="group relative bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+          <!-- Feature icon -->
+          <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+            {feature.icon}
+          </div>
+          
+          <!-- Feature content -->
+          <h3 class="text-xl font-semibold mb-3 text-foreground">
+            {feature.title}
+          </h3>
+          
+          <p class="text-muted-foreground mb-4 leading-relaxed">
+            {feature.description}
+          </p>
+          
+          <!-- Feature details -->
+          <ul class="space-y-2">
+            {feature.details.map((detail) => (
+              <li class="flex items-center text-sm text-muted-foreground">
+                <svg class="w-4 h-4 text-primary mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                {detail}
+              </li>
+            ))}
+          </ul>
+
+          <!-- Hover effect -->
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Stats section -->
+    <div class="mt-20 text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">100+</div>
+          <div class="text-sm text-muted-foreground">Intelligent Aliases & Functions</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">&lt;500ms</div>
+          <div class="text-sm text-muted-foreground">Shell Startup Time</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">3</div>
+          <div class="text-sm text-muted-foreground">Platforms Supported</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl md:text-4xl font-bold text-primary">∞</div>
+          <div class="text-sm text-muted-foreground">Opinionated Excellence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

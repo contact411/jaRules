@@ -1,0 +1,31 @@
+# jaRule Cloudflare Worker Configuration
+
+name = "jarule-dev"
+main = "worker.js"
+compatibility_date = "2024-06-06"
+compatibility_flags = ["nodejs_compat"]
+
+# Routes configuration
+routes = [
+  { pattern = "jarule.dev/*", zone_name = "jarule.dev" }
+]
+
+# Worker settings
+[build]
+command = ""
+
+# Environment variables (if needed)
+[vars]
+GITHUB_REPO = "contact411/jaRules"
+GITHUB_BRANCH = "main"
+
+# Development configuration
+[env.development]
+name = "jarule-dev-staging"
+
+# Production configuration  
+[env.production]
+name = "jarule-dev"
+routes = [
+  { pattern = "jarule.dev/*", zone_name = "jarule.dev" }
+]

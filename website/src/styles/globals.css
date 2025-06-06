@@ -1,0 +1,152 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  :root {
+    /* Catppuccin Mocha Light Mode */
+    --background: 240 21% 15%;
+    --foreground: 226 64% 88%;
+    --card: 232 23% 18%;
+    --card-foreground: 226 64% 88%;
+    --popover: 232 23% 18%;
+    --popover-foreground: 226 64% 88%;
+    --primary: 267 84% 81%;
+    --primary-foreground: 232 23% 18%;
+    --secondary: 233 12% 39%;
+    --secondary-foreground: 226 64% 88%;
+    --muted: 233 12% 39%;
+    --muted-foreground: 227 27% 72%;
+    --accent: 267 84% 81%;
+    --accent-foreground: 232 23% 18%;
+    --destructive: 343 81% 75%;
+    --destructive-foreground: 226 64% 88%;
+    --border: 233 12% 39%;
+    --input: 233 12% 39%;
+    --ring: 267 84% 81%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Catppuccin Mocha Dark Mode (default) */
+    --background: 240 21% 15%;
+    --foreground: 226 64% 88%;
+    --card: 232 23% 18%;
+    --card-foreground: 226 64% 88%;
+    --popover: 232 23% 18%;
+    --popover-foreground: 226 64% 88%;
+    --primary: 267 84% 81%;
+    --primary-foreground: 232 23% 18%;
+    --secondary: 233 12% 39%;
+    --secondary-foreground: 226 64% 88%;
+    --muted: 233 12% 39%;
+    --muted-foreground: 227 27% 72%;
+    --accent: 267 84% 81%;
+    --accent-foreground: 232 23% 18%;
+    --destructive: 343 81% 75%;
+    --destructive-foreground: 226 64% 88%;
+    --border: 233 12% 39%;
+    --input: 233 12% 39%;
+    --ring: 267 84% 81%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground;
+  }
+
+  /* Code blocks */
+  pre {
+    @apply rounded-lg p-4 overflow-x-auto;
+    background: hsl(var(--card)) !important;
+  }
+
+  code {
+    @apply text-sm font-mono;
+  }
+
+  /* Terminal effect */
+  .terminal {
+    @apply bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .terminal::before {
+    content: "$ ";
+    @apply text-yellow-400;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  /* Loading animation */
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Typography enhancements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Container queries support */
+  @container (min-width: 768px) {
+    .container-md\:text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+  }
+}
