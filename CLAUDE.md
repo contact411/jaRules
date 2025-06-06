@@ -30,9 +30,17 @@ editors/                    # Editor configurations
 ├── vim/                    # Sensible defaults, themes
 └── nano/                   # Basic enhancements
 ai-rules/                   # AI assistant configurations
-├── templates/              # Standard rule templates
-├── mcp-servers/           # Claude Desktop MCP config
-└── shared/                # Common context for all AI tools
+├── templates/              # AI tool-specific rule templates
+│   ├── cline/             # Cline assistant configurations
+│   ├── claude-code/       # Claude-Code specific rules
+│   ├── cursor/            # Cursor AI rules
+│   └── shared/            # Common rules across tools
+├── prompt-library/        # Professional prompt templates
+│   ├── foundational/      # System requirements templates
+│   ├── prd/              # Product Requirements Documents
+│   ├── common/           # Code review, debugging, optimization
+│   └── project-types/    # Framework-specific prompts
+└── mcp-servers/          # Claude Desktop MCP configurations
 ```
 
 ## Development Commands
@@ -52,13 +60,18 @@ git clone <repo> && cd dotfiles && ./install.sh
 ### AI Configuration
 ```bash
 # Initialize AI rules for new project
-./dotfiles ai-init [web|api|mobile|fullstack|data-science]
+./jarule ai-init --tool=cline --type=web-app
+./jarule ai-init --tool=claude-code --type=api-server
+
+# Apply professional prompt templates  
+./jarule prompts --add=foundational-requirements
+./jarule prompts --add=prd-template
 
 # Sync AI configurations from shared templates
-./dotfiles ai-sync
+./jarule ai-sync
 
 # Update MCP server paths and project context
-./dotfiles ai-update-mcp
+./jarule ai-update-mcp
 ```
 
 ### Maintenance
@@ -92,9 +105,10 @@ command -v starship >/dev/null 2>&1 || install_starship
 ```
 
 ### AI Rules Hierarchy
-1. **shared/base-context.md** - Universal rules for all AI tools
-2. **tool-specific/** - Extensions for individual AI assistants  
-3. **project-generated** - Final configs combining shared + specific
+1. **ai-rules/templates/shared/** - Universal rules for all AI tools
+2. **ai-rules/templates/[tool-specific]/** - Extensions for individual AI assistants (Cline, Claude-Code, Cursor)
+3. **ai-rules/prompt-library/** - Professional prompt templates (foundational, PRD, code review, debugging, optimization)
+4. **project-generated** - Final configs combining shared + tool-specific + project context
 
 ### Secure Storage Integration
 - macOS: Use `security` command for Keychain access
@@ -125,9 +139,11 @@ Claude Desktop should auto-configure with project-aware MCP servers:
 - Dynamic loading based on detected project types
 
 ### Rules File Management  
-- Template-based generation from shared context
-- Project type auto-detection from package.json, requirements.txt, etc.
-- Consistent formatting and structure across all AI tools
+- **Template inheritance**: Base rules + tool-specific + project overrides
+- **Professional prompt library**: Comprehensive templates for requirements, PRDs, code review, debugging, optimization
+- **Project type auto-detection**: From package.json, requirements.txt, framework detection
+- **Variable substitution**: Dynamic configuration based on project context
+- **Consistent formatting**: Unified structure across all AI tools (Cline, Claude-Code, Cursor, etc.)
 
 ### Cross-Platform Compatibility
 All AI configurations must work across macOS, Linux, and Windows with appropriate path handling and tool availability checks.

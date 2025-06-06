@@ -28,10 +28,12 @@ That's it. That's literally it. I handle the rest because I'm **that good**.
 ### 🎨 AI-First Development Experience
 I'm not stuck in 2019 like those other dotfiles repos. I *embrace* the AI revolution:
 
+- **Cline & Claude-Code rules** that embody jaRule's opinionated excellence
+- **Professional prompt templates** for requirements, PRDs, code review, debugging & optimization
 - **Cursor rules** that make your AI assistant a coding god
-- **Cline configurations** that understand your project before you do  
 - **GitHub Copilot instructions** so precise they'll make you weep with joy
 - **Claude Desktop MCP servers** that give you superpowers
+- **Template inheritance** with base rules + project-specific overrides
 
 ### 🔥 The Most Opinionated Configs on Earth
 I don't believe in "choice paralysis." I believe in **the right way**:
@@ -72,6 +74,8 @@ I don't mess around with your secrets:
 - **Nano**: Because sometimes simple is sophisticated
 
 ### AI Integration Excellence
+- **Comprehensive AI Rules**: Cline & Claude-Code templates that transform any AI into a productivity powerhouse
+- **Professional Prompt Library**: Foundational requirements, PRD templates, code review, debugging & optimization guides
 - **Template library** for every project type you can imagine
 - **Context sharing** between all your AI tools (no more repeating yourself)
 - **Smart detection** that configures your AI rules automatically
@@ -145,5 +149,11 @@ Open an issue, start a discussion, or just @ me. I'm always listening, always im
 ---
 
 *Remember: Life's too short for ugly terminals and broken workflows. Let jaRule handle the details so you can focus on building the future.*
+
+## Credits & Inspiration 🙏
+
+**Special thanks to [AxelQuack](https://github.com/axelquack/dotfiles-macos)** for the brilliant dotfiles inspiration that helped seed the prompting approach. The original vision from AxelQuack's macOS dotfiles repository provided the foundational thinking that evolved into jaRule's legendary AI-first configuration system.
+
+Standing on the shoulders of giants to build something even more magnificent.
 
 **Welcome to the Joloverse. Your setup will never be the same.** ✨
