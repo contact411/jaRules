@@ -172,3 +172,29 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# jaRule Project Settings
+# Claude local settings (permissions, personal configs)
+.claude/settings.local.json
+.claude/history/
+
+# VSCode workspace settings (personal preferences)
+.vscode/settings.json
+.vscode/launch.json
+
+# Keep these for team sharing
+!.vscode/extensions.json
+!.vscode/tasks.json
+
+# Environment-specific configs
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
