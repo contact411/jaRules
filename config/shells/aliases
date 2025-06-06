@@ -1,0 +1,356 @@
+# jaRule's Legendary Shell Aliases
+# The most opinionated and useful aliases in existence
+
+#################
+# Enhanced Core Commands
+#################
+
+# Modern replacements for classic commands
+if command -v exa >/dev/null 2>&1; then
+    alias ls='exa --icons --group-directories-first'
+    alias ll='exa --icons --group-directories-first -l'
+    alias la='exa --icons --group-directories-first -la'
+    alias lt='exa --icons --group-directories-first --tree'
+    alias tree='exa --icons --group-directories-first --tree'
+else
+    # Fallback to classic ls with colors
+    alias ls='ls --color=auto'
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+fi
+
+if command -v bat >/dev/null 2>&1; then
+    alias cat='bat --style=auto'
+    alias less='bat --style=auto --pager="less -RF"'
+else
+    alias cat='cat'
+fi
+
+if command -v fd >/dev/null 2>&1; then
+    alias find='fd'
+fi
+
+if command -v rg >/dev/null 2>&1; then
+    alias grep='rg'
+    alias egrep='rg'
+    alias fgrep='rg -F'
+fi
+
+if command -v duf >/dev/null 2>&1; then
+    alias df='duf'
+fi
+
+if command -v dust >/dev/null 2>&1; then
+    alias du='dust'
+fi
+
+if command -v procs >/dev/null 2>&1; then
+    alias ps='procs'
+fi
+
+#################
+# Navigation & Directory Operations
+#################
+
+# Quick navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ~='cd ~'
+alias -- -='cd -'
+
+# Directory shortcuts
+alias home='cd ~'
+alias dev='cd ~/Developer'
+alias desktop='cd ~/Desktop'
+alias downloads='cd ~/Downloads'
+alias documents='cd ~/Documents'
+
+# Directory operations
+alias md='mkdir -p'
+alias rd='rmdir'
+
+# Enhanced directory listing
+alias lld='ll -D'  # Only directories
+alias lla='ll -a'  # All files including hidden
+alias lls='ll -S'  # Sort by size
+alias llt='ll -t'  # Sort by time
+
+#################
+# Git Aliases (in addition to git config aliases)
+#################
+
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gc='git commit'
+alias gco='git checkout'
+alias gd='git diff'
+alias gf='git fetch'
+alias gl='git log --oneline -10'
+alias gp='git push'
+alias gpl='git pull'
+alias gs='git status'
+alias gst='git stash'
+
+# Advanced git operations
+alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+alias gwho='git shortlog -sn'
+alias gundo='git reset --soft HEAD~1'
+
+#################
+# Node.js & npm
+#################
+
+# Use ni (universal package manager) if available
+if command -v ni >/dev/null 2>&1; then
+    alias npm='ni'
+    alias npmi='ni'
+    alias npx='nr'
+    alias npmr='nr'
+    alias npmu='nu'
+else
+    # Standard npm aliases
+    alias npmi='npm install'
+    alias npmr='npm run'
+    alias npmu='npm update'
+fi
+
+# Package.json scripts
+alias dev='npm run dev'
+alias build='npm run build'
+alias test='npm test'
+alias start='npm start'
+alias lint='npm run lint'
+alias format='npm run format'
+
+# Node version management
+alias node-versions='fnm list'
+alias node-install='fnm install'
+alias node-use='fnm use'
+
+#################
+# Development Tools
+#################
+
+# Code editors
+alias c='code'
+alias code.='code .'
+alias vim='nvim'
+alias vi='nvim'
+
+# Docker
+alias d='docker'
+alias dc='docker-compose'
+alias dps='docker ps'
+alias dimg='docker images'
+alias dexec='docker exec -it'
+alias dlogs='docker logs -f'
+alias dclean='docker system prune -af'
+
+# Kubernetes
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get services'
+alias kgd='kubectl get deployments'
+alias kd='kubectl describe'
+alias ke='kubectl edit'
+alias kl='kubectl logs'
+
+#################
+# System Utilities
+#################
+
+# Process management
+alias psg='ps aux | grep'
+alias top='htop'
+alias ports='netstat -tulanp'
+
+# Network
+alias ping='ping -c 5'
+alias wget='wget -c'
+alias myip='curl -4 ifconfig.co'
+alias localip='ipconfig getifaddr en0'
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+
+# System monitoring
+alias cpu='top -o cpu'
+alias mem='top -o rsize'
+
+#################
+# File Operations
+#################
+
+# Safety nets
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Archive operations
+alias tarx='tar -xvf'
+alias tarc='tar -cvf'
+alias tarz='tar -czvf'
+alias untar='tar -xvf'
+
+# File permissions
+alias chx='chmod +x'
+alias 755='chmod 755'
+alias 644='chmod 644'
+
+#################
+# Quick Edits
+#################
+
+# Config file shortcuts
+alias zshrc='$EDITOR ~/.zshrc'
+alias bashrc='$EDITOR ~/.bashrc'
+alias vimrc='$EDITOR ~/.vimrc'
+alias gitconfig='$EDITOR ~/.gitconfig'
+alias hosts='sudo $EDITOR /etc/hosts'
+
+#################
+# Utility Functions
+#################
+
+# Quick HTTP server
+alias serve='python3 -m http.server 8000'
+alias serve-here='python3 -m http.server 8000'
+
+# JSON formatting
+alias json='python3 -m json.tool'
+
+# URL encoding/decoding
+alias urlencode='python3 -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
+alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+
+# Generate random passwords
+alias genpass='openssl rand -base64 32'
+
+# Show path in a readable format
+alias path='echo $PATH | tr ":" "\n"'
+
+# Disk usage
+alias usage='du -h -d1'
+
+# Weather
+alias weather='curl wttr.in'
+
+#################
+# macOS Specific
+#################
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Spotlight
+    alias spotlight-off='sudo mdutil -a -i off'
+    alias spotlight-on='sudo mdutil -a -i on'
+    
+    # Show/hide hidden files
+    alias show-hidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
+    alias hide-hidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
+    
+    # Clipboard
+    alias copy='pbcopy'
+    alias paste='pbpaste'
+    
+    # Quick Look
+    alias ql='qlmanage -p'
+    
+    # Empty trash
+    alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
+    
+    # Update
+    alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup'
+fi
+
+#################
+# Linux Specific
+#################
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Package management
+    if command -v apt >/dev/null 2>&1; then
+        alias install='sudo apt install'
+        alias search='apt search'
+        alias update='sudo apt update && sudo apt upgrade'
+    elif command -v yum >/dev/null 2>&1; then
+        alias install='sudo yum install'
+        alias search='yum search'
+        alias update='sudo yum update'
+    elif command -v pacman >/dev/null 2>&1; then
+        alias install='sudo pacman -S'
+        alias search='pacman -Ss'
+        alias update='sudo pacman -Syu'
+    fi
+    
+    # Clipboard
+    alias copy='xclip -selection clipboard'
+    alias paste='xclip -selection clipboard -o'
+    
+    # System info
+    alias sysinfo='neofetch'
+fi
+
+#################
+# Fun & Productivity
+#################
+
+# Time and date
+alias now='date +"%T"'
+alias nowdate='date +"%d-%m-%Y"'
+alias timestamp='date +"%Y%m%d_%H%M%S"'
+
+# Calculator
+alias calc='bc -l'
+
+# Make and enter directory
+mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Extract any archive
+extract() {
+    if [ -f "$1" ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf "$1"     ;;
+            *.tar.gz)    tar xzf "$1"     ;;
+            *.bz2)       bunzip2 "$1"     ;;
+            *.rar)       unrar e "$1"     ;;
+            *.gz)        gunzip "$1"      ;;
+            *.tar)       tar xf "$1"      ;;
+            *.tbz2)      tar xjf "$1"     ;;
+            *.tgz)       tar xzf "$1"     ;;
+            *.zip)       unzip "$1"       ;;
+            *.Z)         uncompress "$1"  ;;
+            *.7z)        7z x "$1"        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+# Find and kill process
+killport() {
+    if [ -z "$1" ]; then
+        echo "Usage: killport <port>"
+        return 1
+    fi
+    lsof -ti:$1 | xargs kill -9
+}
+
+# Quick backup
+backup() {
+    cp "$1"{,.bak}
+}
+
+# Create a data URL from a file
+dataurl() {
+    local mimeType=$(file -b --mime-type "$1")
+    if [[ $mimeType == text/* ]]; then
+        mimeType="${mimeType};charset=utf-8"
+    fi
+    echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
+}

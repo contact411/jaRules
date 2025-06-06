@@ -1,0 +1,125 @@
+{
+  "recommendations": [
+    "// === jaRule's Legendary VSCode Extensions ===",
+    "// The essential toolkit for legendary developers",
+    
+    "// === Theme & Icons ===",
+    "catppuccin.catppuccin-vsc",
+    "catppuccin.catppuccin-vsc-icons",
+    "pkief.material-icon-theme",
+    
+    "// === AI Assistants ===",
+    "github.copilot",
+    "github.copilot-chat",
+    "continue.continue",
+    
+    "// === Language Support ===",
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "rust-lang.rust-analyzer",
+    "golang.go",
+    "ms-dotnettools.csharp",
+    
+    "// === Formatters & Linters ===",
+    "esbenp.prettier-vscode",
+    "biomejs.biome",
+    "dbaeumer.vscode-eslint",
+    "ms-python.flake8",
+    "ms-python.pylint",
+    "streetsidesoftware.code-spell-checker",
+    
+    "// === Git & Version Control ===",
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    
+    "// === Development Tools ===",
+    "ms-vscode.vscode-json",
+    "redhat.vscode-yaml",
+    "ms-vscode.hexeditor",
+    "humao.rest-client",
+    "rangav.vscode-thunder-client",
+    
+    "// === Docker & Containers ===",
+    "ms-azuretools.vscode-docker",
+    "ms-vscode-remote.remote-containers",
+    "ms-vscode-remote.remote-ssh",
+    
+    "// === Kubernetes ===",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    
+    "// === Databases ===",
+    "mtxr.sqltools",
+    "mongodb.mongodb-vscode",
+    
+    "// === Productivity ===",
+    "gruntfuggly.todo-tree",
+    "aaron-bond.better-comments",
+    "alefragnani.bookmarks",
+    "wayou.vscode-todo-highlight",
+    "christian-kohler.path-intellisense",
+    "formulahendry.auto-rename-tag",
+    "formulahendry.auto-close-tag",
+    
+    "// === Terminal & Shell ===",
+    "ms-vscode.powershell",
+    "timonwong.shellcheck",
+    
+    "// === Markdown ===",
+    "yzhang.markdown-all-in-one",
+    "shd101wyy.markdown-preview-enhanced",
+    "davidanson.vscode-markdownlint",
+    
+    "// === Web Development ===",
+    "ritwickdey.liveserver",
+    "ms-vscode.vscode-css-peek",
+    "zignd.html-css-class-completion",
+    "pranaygp.vscode-css-peek",
+    
+    "// === React & Frontend ===",
+    "dsznajder.es7-react-js-snippets",
+    "formulahendry.auto-complete-tag",
+    "christian-kohler.npm-intellisense",
+    
+    "// === Testing ===",
+    "hbenl.vscode-test-explorer",
+    "ms-vscode.test-adapter-converter",
+    "orta.vscode-jest",
+    
+    "// === API Development ===",
+    "42crunch.vscode-openapi",
+    "ms-vscode.vscode-json",
+    
+    "// === Performance & Debugging ===",
+    "ms-vscode.vscode-js-profile-flame",
+    "ms-vscode.js-debug-nightly",
+    
+    "// === File Management ===",
+    "sleistner.vscode-fileutils",
+    "jock.svg",
+    "ms-vscode.vscode-pdf",
+    
+    "// === Collaboration ===",
+    "ms-vsliveshare.vsliveshare",
+    "ms-vsliveshare.vsliveshare-audio",
+    
+    "// === Settings & Configuration ===",
+    "pascalreitermann93.vscode-yaml-sort",
+    "ms-vscode.vscode-json",
+    
+    "// === Security ===",
+    "snyk-security.snyk-vulnerability-scanner",
+    
+    "// === Utilities ===",
+    "ms-vscode.vscode-speech",
+    "visualstudioexptteam.vscodeintellicode",
+    "ms-vscode.vscode-github-issue-notebooks",
+    
+    "// === Code Analysis ===",
+    "sonarsource.sonarlint-vscode",
+    "ms-vscode.vscode-github-issue-notebooks"
+  ]
+}

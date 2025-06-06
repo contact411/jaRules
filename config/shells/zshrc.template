@@ -1,0 +1,278 @@
+# jaRule's Legendary Zsh Configuration
+# The most opinionated, beautiful, and functional shell setup in existence
+
+# Performance profiling (uncomment for debugging)
+# zmodload zsh/zprof
+
+#################
+# XDG Base Directory Specification
+#################
+
+# Ensure XDG directories are set before anything else
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+# Create directories if they don't exist
+mkdir -p "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_CACHE_HOME" "$XDG_STATE_HOME"
+
+#################
+# Zsh Configuration
+#################
+
+# History configuration (XDG compliant)
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=10000
+SAVEHIST=10000
+mkdir -p "$(dirname "$HISTFILE")"
+
+# History options
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format
+setopt SHARE_HISTORY            # Share history between all sessions
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire duplicate entries first when trimming history
+setopt HIST_IGNORE_DUPS         # Don't record an entry that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS     # Delete old recorded entry if new entry is a duplicate
+setopt HIST_FIND_NO_DUPS        # Do not display a line previously found
+setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space
+setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in the history file
+setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry
+setopt HIST_VERIFY              # Don't execute immediately upon history expansion
+
+# Directory options
+setopt AUTO_CD                  # Auto change to a directory without typing cd
+setopt AUTO_PUSHD              # Push the old directory onto the stack on cd
+setopt PUSHD_IGNORE_DUPS       # Do not store duplicates in the stack
+setopt PUSHD_SILENT            # Do not print the directory stack after pushd or popd
+
+# Completion options
+setopt COMPLETE_IN_WORD        # Complete from both ends of a word
+setopt ALWAYS_TO_END           # Move cursor to the end of a completed word
+setopt PATH_DIRS               # Perform path search even on command names with slashes
+setopt AUTO_MENU               # Show completion menu on successive tab press
+setopt AUTO_LIST               # Automatically list choices on ambiguous completion
+setopt AUTO_PARAM_SLASH        # If completed parameter is a directory, add a trailing slash
+
+# Correction options
+setopt CORRECT                 # Try to correct the spelling of commands
+setopt CORRECT_ALL             # Try to correct the spelling of all arguments in a line
+
+# Other useful options
+setopt INTERACTIVE_COMMENTS    # Allow comments even in interactive shells
+setopt MULTIOS                 # Write to multiple descriptors
+setopt EXTENDED_GLOB           # Enable extended globbing
+
+#################
+# Completion System
+#################
+
+# Initialize completion system
+autoload -Uz compinit
+
+# Security: only run compinit if needed
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C
+fi
+
+# Completion styling
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+
+# Group matches and describe
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+
+# Case-insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+#################
+# Key Bindings
+#################
+
+# Use emacs-style key bindings
+bindkey -e
+
+# Better history search
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^[[A" history-beginning-search-backward-end
+bindkey "^[[B" history-beginning-search-forward-end
+
+# Additional useful key bindings
+bindkey "^[^[[C" forward-word      # Alt + Right Arrow
+bindkey "^[^[[D" backward-word     # Alt + Left Arrow
+bindkey "^[[1;5C" forward-word     # Ctrl + Right Arrow
+bindkey "^[[1;5D" backward-word    # Ctrl + Left Arrow
+bindkey "^[[3~" delete-char        # Delete key
+bindkey "^[[H" beginning-of-line   # Home key
+bindkey "^[[F" end-of-line         # End key
+
+#################
+# Load jaRule Components
+#################
+
+# Load exports (environment variables)
+if [[ -f "$XDG_CONFIG_HOME/shells/exports" ]]; then
+    source "$XDG_CONFIG_HOME/shells/exports"
+fi
+
+# Load aliases
+if [[ -f "$XDG_CONFIG_HOME/shells/aliases" ]]; then
+    source "$XDG_CONFIG_HOME/shells/aliases"
+fi
+
+# Load functions
+if [[ -f "$XDG_CONFIG_HOME/shells/functions" ]]; then
+    source "$XDG_CONFIG_HOME/shells/functions"
+fi
+
+#################
+# External Tools Integration
+#################
+
+# fnm (Fast Node Manager) initialization
+if command -v fnm >/dev/null 2>&1; then
+    eval "$(fnm env --use-on-cd)"
+fi
+
+# Starship prompt initialization
+if command -v starship >/dev/null 2>&1; then
+    eval "$(starship init zsh)"
+else
+    # Fallback prompt if Starship isn't available
+    PROMPT='%F{cyan}%n@%m%f:%F{yellow}%~%f%# '
+fi
+
+# fzf integration
+if command -v fzf >/dev/null 2>&1; then
+    # Auto-completion
+    [[ $- == *i* ]] && source <(fzf --zsh) 2>/dev/null
+    
+    # Key bindings
+    if [[ -f "$HOME/.fzf.zsh" ]]; then
+        source "$HOME/.fzf.zsh"
+    fi
+fi
+
+# zoxide (better cd) integration
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+    alias cd="z"
+fi
+
+# direnv integration
+if command -v direnv >/dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+fi
+
+# thefuck integration
+if command -v thefuck >/dev/null 2>&1; then
+    eval $(thefuck --alias)
+fi
+
+#################
+# Platform-Specific Configurations
+#################
+
+# macOS specific
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # iTerm2 shell integration
+    if [[ -f "$HOME/.iterm2_shell_integration.zsh" ]]; then
+        source "$HOME/.iterm2_shell_integration.zsh"
+    fi
+    
+    # Homebrew completions
+    if [[ -d "$HOMEBREW_PREFIX/share/zsh-completions" ]]; then
+        fpath=("$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
+    fi
+fi
+
+# Linux specific
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Debian/Ubuntu command-not-found
+    if [[ -f "/etc/zsh_command_not_found" ]]; then
+        source "/etc/zsh_command_not_found"
+    fi
+fi
+
+#################
+# Zsh Plugins (Optional)
+#################
+
+# If you want to use a plugin manager, uncomment one of these sections:
+
+# Oh My Zsh
+# export ZSH="$XDG_DATA_HOME/oh-my-zsh"
+# plugins=(git node npm docker kubectl)
+# source $ZSH/oh-my-zsh.sh
+
+# Zinit
+# ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
+# source "${ZINIT_HOME}/zinit.zsh"
+# zinit load "zsh-users/zsh-autosuggestions"
+# zinit load "zsh-users/zsh-syntax-highlighting"
+# zinit load "zsh-users/zsh-completions"
+
+# Manual plugin loading (lightweight approach)
+ZSH_PLUGINS_DIR="$XDG_DATA_HOME/zsh/plugins"
+
+# Auto-suggestions
+if [[ -f "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+    source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
+    ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+fi
+
+# Syntax highlighting (must be last)
+if [[ -f "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+    source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+#################
+# Local Customizations
+#################
+
+# Load local customizations if they exist
+if [[ -f "$XDG_CONFIG_HOME/shells/zshrc.local" ]]; then
+    source "$XDG_CONFIG_HOME/shells/zshrc.local"
+fi
+
+# Load work-specific configurations
+if [[ -f "$XDG_CONFIG_HOME/shells/zshrc.work" ]]; then
+    source "$XDG_CONFIG_HOME/shells/zshrc.work"
+fi
+
+#################
+# Welcome Message
+#################
+
+# Show jaRule welcome message (only for interactive shells)
+if [[ $- == *i* ]] && [[ -z "$JARULE_QUIET" ]]; then
+    echo ""
+    echo "🎯 Welcome to jaRule - Master of All Things Smooth"
+    echo "💡 Type 'jarule_help' to see available functions"
+    echo "⚡ Your legendary development environment is ready!"
+    echo ""
+    
+    # Show system info if requested
+    if [[ -n "$JARULE_SHOW_INFO" ]]; then
+        sysinfo
+    fi
+fi
+
+# Performance profiling output (uncomment for debugging)
+# zprof

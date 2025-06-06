@@ -1,0 +1,226 @@
+# jaRule's Legendary Git Configuration
+# Modern, secure, and performance-optimized
+
+[user]
+    name = ${GIT_AUTHOR_NAME}
+    email = ${GIT_AUTHOR_EMAIL}
+    signingkey = ${GIT_SIGNING_KEY}
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = code --wait
+    autocrlf = input
+    safecrlf = warn
+    filemode = true
+    precomposeunicode = true
+    
+    # Performance optimizations
+    preloadindex = true
+    fscache = true
+    
+    # Modern tools
+    pager = delta
+    excludesfile = ~/.config/git/ignore_global
+
+[commit]
+    gpgsign = true
+    template = ~/.config/git/commit_template
+
+[gpg]
+    program = gpg
+
+[tag]
+    gpgsign = true
+
+[push]
+    default = simple
+    followTags = true
+    autoSetupRemote = true
+
+[pull]
+    rebase = true
+    ff = only
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+
+[merge]
+    tool = vscode
+    conflictstyle = diff3
+    ff = false
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+
+[diff]
+    algorithm = patience
+    renames = copies
+    mnemonicPrefix = true
+    colorMoved = default
+
+[status]
+    showUntrackedFiles = all
+    submoduleSummary = true
+
+[log]
+    abbrevCommit = true
+    decorate = short
+
+[color]
+    ui = auto
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+# Modern CLI tools integration
+[delta]
+    navigate = true
+    light = false
+    side-by-side = true
+    line-numbers = true
+    syntax-theme = Dracula
+
+[interactive]
+    diffFilter = delta --color-only
+
+# Performance and behavior
+[gc]
+    auto = 256
+
+[help]
+    autocorrect = 1
+
+[rerere]
+    enabled = true
+
+[branch]
+    autosetupmerge = always
+    autosetuprebase = always
+
+[submodule]
+    recurse = true
+
+# Security
+[transfer]
+    fsckobjects = true
+
+[fetch]
+    fsckobjects = true
+
+[receive]
+    fsckObjects = true
+
+# Network optimizations
+[http]
+    postBuffer = 524288000
+    lowSpeedLimit = 0
+    lowSpeedTime = 999999
+
+# GitHub-specific settings
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+# Include conditional configs
+[includeIf "gitdir:~/work/"]
+    path = ~/.config/git/work_config
+
+[includeIf "gitdir:~/personal/"]
+    path = ~/.config/git/personal_config
+
+# Aliases - The legendary shortcuts
+[alias]
+    # Status and information
+    s = status -sb
+    st = status
+    info = remote show origin
+    
+    # Branch operations  
+    b = branch
+    ba = branch -a
+    bd = branch -d
+    bD = branch -D
+    co = checkout
+    cob = checkout -b
+    com = checkout main
+    cod = checkout develop
+    
+    # Commit operations
+    c = commit
+    cm = commit -m
+    ca = commit -am
+    amend = commit --amend
+    amendf = commit --amend --no-edit
+    
+    # Log and history
+    l = log --oneline -10
+    ll = log --oneline
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    
+    # Diff operations
+    d = diff
+    ds = diff --staged
+    dc = diff --cached
+    
+    # Stash operations
+    ss = stash save
+    sp = stash pop
+    sl = stash list
+    sd = stash drop
+    
+    # Remote operations
+    f = fetch
+    fa = fetch --all
+    p = push
+    pf = push --force-with-lease
+    pu = push -u origin HEAD
+    
+    # Rebase operations
+    r = rebase
+    ri = rebase -i
+    rc = rebase --continue
+    ra = rebase --abort
+    
+    # Reset operations
+    unstage = reset HEAD --
+    undo = reset --soft HEAD~1
+    hard-reset = reset --hard HEAD~1
+    
+    # Utility aliases
+    aliases = config --get-regexp alias
+    whoami = config user.email
+    cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master\\|develop' | xargs -n 1 git branch -d"
+    
+    # Modern workflow
+    sync = "!git fetch && git rebase origin/main"
+    refresh = "!git fetch origin && git reset --hard origin/$(git branch --show-current)"
+    
+    # File operations
+    ls = ls-files
+    ignored = ls-files -o -i --exclude-standard
+    
+    # Submodule operations
+    sub = submodule
+    subi = submodule update --init --recursive
+    
+    # Archive
+    export = archive --format zip --output

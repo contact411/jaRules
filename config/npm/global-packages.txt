@@ -1,0 +1,54 @@
+# jaRule's Essential Global npm Packages
+# The legendary toolkit for modern development
+
+# Development Tools
+@antfu/ni                    # Universal package manager commands (ni, nr, nu)
+@biomejs/biome              # Ultra-fast linter and formatter
+typescript                  # TypeScript compiler
+tsx                         # Enhanced TypeScript execution
+nodemon                     # Development auto-restart
+concurrently               # Run multiple commands simultaneously
+
+# CLI Enhancement
+zx                          # Better shell scripting with JavaScript
+clinpx                      # Enhanced npx with caching
+npm-check-updates          # Update package.json dependencies
+depcheck                   # Check for unused dependencies
+
+# Development Servers & Tools  
+serve                       # Static file server
+http-server                # Simple HTTP server
+live-server                # Development server with live reload
+
+# Code Quality
+eslint                     # JavaScript/TypeScript linting
+prettier                   # Code formatting
+husky                      # Git hooks management
+lint-staged               # Run linters on git staged files
+
+# Build Tools
+vite                       # Next generation build tool
+rollup                     # Module bundler
+webpack-cli               # Webpack command line interface
+
+# Testing
+vitest                     # Vite-native test runner
+jest                       # JavaScript testing framework
+
+# Utilities
+uuid                       # UUID generation
+lodash                     # Utility library
+axios                      # HTTP client
+dotenv-cli                # Load environment variables from .env files
+
+# Modern CLI Tools (if not available via system package manager)
+fx                         # Interactive JSON viewer
+jq                         # JSON processor (if not available via brew/apt)
+
+# AI/ML Tools
+@anthropic-ai/claude-sdk   # Claude API SDK
+openai                     # OpenAI API client
+
+# Documentation
+doctoc                     # Table of contents generator
+markdown-toc              # Markdown table of contents

@@ -1,0 +1,332 @@
+# jaRule's Legendary Global .gitignore
+# Comprehensive exclusions for modern development
+
+#################
+# macOS
+#################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+#################
+# Windows
+#################
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+#################
+# Linux
+#################
+*~
+.nfs*
+
+#################
+# Editor/IDE
+#################
+# VSCode
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/.ropeproject
+
+# JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+.netrwhist
+Session.vim
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+#################
+# Languages & Frameworks
+#################
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+.node_repl_history
+*.tgz
+.yarn-cache/
+.pnp.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.pytest_cache/
+.hypothesis/
+.coverage.*
+htmlcov/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.nyc_output
+.coverage
+.coveragerc
+
+# Ruby
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+.bundle/
+vendor/bundle
+lib/bundler/man
+
+# Go
+vendor/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Rust
+/target/
+Cargo.lock
+**/*.rs.bk
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# C/C++
+*.o
+*.a
+*.so
+*.obj
+*.exe
+*.out
+*.app
+
+#################
+# Databases
+#################
+*.sqlite
+*.sqlite3
+*.db
+*.mdb
+
+#################
+# Logs
+#################
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+#################
+# Environment & Secrets
+#################
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.envrc
+
+# API Keys and Secrets
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+config/secrets.yml
+
+#################
+# Package Managers
+#################
+# npm
+package-lock.json
+
+# Yarn
+yarn.lock
+
+# Composer
+composer.lock
+
+# Pipenv
+Pipfile.lock
+
+#################
+# Build & Temporary
+#################
+dist/
+build/
+out/
+*.tmp
+*.temp
+.cache/
+.next/
+.nuxt/
+.vuepress/dist
+
+#################
+# Testing
+#################
+coverage/
+.nyc_output/
+.jest/
+test-results/
+junit.xml
+
+#################
+# Documentation
+#################
+# Avoid accidental commits of generated docs
+docs/build/
+site/
+
+#################
+# Cloud & Services
+#################
+# AWS
+.aws/
+.s3cfg
+
+# Google Cloud
+.gcloudignore
+
+# Azure
+.azure/
+
+# Docker
+.dockerignore
+
+#################
+# Personal & Local
+#################
+# Personal notes and TODO files
+TODO.md
+NOTES.md
+.personal/
+.local/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Archive files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+#################
+# AI & Development Tools
+#################
+# Claude
+.claude/
+.aider*
+
+# Cursor
+.cursor/
+
+# AI generated files
+*.ai-generated
+
+#################
+# Miscellaneous
+#################
+# Thumbnails
+*.thumbnail
+
+# Files that might appear in the root of a volume
+.fseventsd
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+
+# Network Trash Folder
+Network Trash Folder
+Temporary Items
+.apdisk

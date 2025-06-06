@@ -1,0 +1,530 @@
+# jaRule's Legendary Shell Functions
+# Powerful utilities that make development a joy
+
+#################
+# Directory and Navigation Functions
+#################
+
+# Create directory and cd into it
+mkcd() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: mkcd <directory>"
+        return 1
+    fi
+    mkdir -p "$1" && cd "$1"
+}
+
+# Go up n directories
+up() {
+    local d=""
+    local limit="${1:-1}"
+    for ((i=1; i<=limit; i++)); do
+        d="../$d"
+    done
+    if [[ -z "$d" ]]; then
+        d=".."
+    fi
+    cd "$d"
+}
+
+# Find and cd to directory
+cdf() {
+    if command -v fd >/dev/null 2>&1; then
+        local dir
+        dir=$(fd --type d --hidden --follow --exclude .git . "${1:-.}" | fzf --preview 'ls -la {}') && cd "$dir"
+    else
+        echo "fd command not found. Please install fd-find."
+        return 1
+    fi
+}
+
+# Show directory tree with depth limit
+tree() {
+    if command -v exa >/dev/null 2>&1; then
+        exa --tree --level="${1:-2}" --icons
+    elif command -v tree >/dev/null 2>&1; then
+        command tree -L "${1:-2}" -aC
+    else
+        find . -type d -maxdepth "${1:-2}" | sed -e 's/[^-[^\/]*\//  /g' -e 's/^  //' -e 's/-/|/'
+    fi
+}
+
+#################
+# File Operations
+#################
+
+# Extract any archive
+extract() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: extract <archive_file>"
+        return 1
+    fi
+    
+    if [[ ! -f "$1" ]]; then
+        echo "Error: '$1' is not a valid file"
+        return 1
+    fi
+    
+    case "$1" in
+        *.tar.bz2)   tar xjf "$1"     ;;
+        *.tar.gz)    tar xzf "$1"     ;;
+        *.tar.xz)    tar xJf "$1"     ;;
+        *.bz2)       bunzip2 "$1"     ;;
+        *.rar)       unrar e "$1"     ;;
+        *.gz)        gunzip "$1"      ;;
+        *.tar)       tar xf "$1"      ;;
+        *.tbz2)      tar xjf "$1"     ;;
+        *.tgz)       tar xzf "$1"     ;;
+        *.zip)       unzip "$1"       ;;
+        *.Z)         uncompress "$1"  ;;
+        *.7z)        7z x "$1"        ;;
+        *.deb)       ar x "$1"        ;;
+        *.tar.lz)    tar xf "$1"      ;;
+        *.tar.lzo)   tar xf "$1"      ;;
+        *)           echo "Error: '$1' cannot be extracted via extract()" ;;
+    esac
+}
+
+# Create archive
+archive() {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: archive <archive_name> <files...>"
+        echo "Supported formats: .tar.gz, .tar.bz2, .tar.xz, .zip, .7z"
+        return 1
+    fi
+    
+    local archive_name="$1"
+    shift
+    
+    case "$archive_name" in
+        *.tar.gz)  tar czf "$archive_name" "$@" ;;
+        *.tar.bz2) tar cjf "$archive_name" "$@" ;;
+        *.tar.xz)  tar cJf "$archive_name" "$@" ;;
+        *.zip)     zip -r "$archive_name" "$@" ;;
+        *.7z)      7z a "$archive_name" "$@" ;;
+        *)         echo "Error: Unsupported archive format" ;;
+    esac
+}
+
+# Quick backup of file/directory
+backup() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: backup <file_or_directory>"
+        return 1
+    fi
+    
+    local timestamp=$(date +"%Y%m%d_%H%M%S")
+    cp -r "$1" "${1}.backup_${timestamp}"
+    echo "Backup created: ${1}.backup_${timestamp}"
+}
+
+# Find file by name
+ff() {
+    if command -v fd >/dev/null 2>&1; then
+        fd --type f --hidden --follow --exclude .git "$1"
+    else
+        find . -type f -iname "*$1*" 2>/dev/null
+    fi
+}
+
+# Find directory by name
+fd_dir() {
+    if command -v fd >/dev/null 2>&1; then
+        fd --type d --hidden --follow --exclude .git "$1"
+    else
+        find . -type d -iname "*$1*" 2>/dev/null
+    fi
+}
+
+#################
+# Development Functions
+#################
+
+# Initialize a new project
+init_project() {
+    local project_type="${1:-node}"
+    local project_name="${2:-my-project}"
+    
+    case "$project_type" in
+        "node"|"nodejs")
+            mkdir -p "$project_name"
+            cd "$project_name"
+            npm init -y
+            echo "node_modules/\n.env\n*.log" > .gitignore
+            git init
+            echo "# $project_name" > README.md
+            ;;
+        "python")
+            mkdir -p "$project_name"
+            cd "$project_name"
+            python3 -m venv venv
+            echo "venv/\n__pycache__/\n*.pyc\n.env" > .gitignore
+            git init
+            echo "# $project_name" > README.md
+            ;;
+        "rust")
+            cargo new "$project_name"
+            cd "$project_name"
+            ;;
+        "go")
+            mkdir -p "$project_name"
+            cd "$project_name"
+            go mod init "$project_name"
+            echo "# $project_name" > README.md
+            git init
+            ;;
+        *)
+            echo "Supported project types: node, python, rust, go"
+            return 1
+            ;;
+    esac
+    
+    echo "Project '$project_name' initialized successfully!"
+}
+
+# Find and kill process by port
+killport() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: killport <port>"
+        return 1
+    fi
+    
+    local pids
+    pids=$(lsof -ti:"$1" 2>/dev/null)
+    
+    if [[ -z "$pids" ]]; then
+        echo "No process found on port $1"
+        return 1
+    fi
+    
+    echo "Killing process(es) on port $1: $pids"
+    echo "$pids" | xargs kill -9
+}
+
+# Show what's listening on a port
+port() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: port <port_number>"
+        return 1
+    fi
+    
+    lsof -i :"$1"
+}
+
+# Find process by name
+psgrep() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: psgrep <process_name>"
+        return 1
+    fi
+    
+    ps aux | grep -i "$1" | grep -v grep
+}
+
+#################
+# Git Functions
+#################
+
+# Git commit with conventional commit format
+gcom() {
+    if [[ $# -lt 2 ]]; then
+        echo "Usage: gcom <type> <message> [scope]"
+        echo "Types: feat, fix, docs, style, refactor, test, chore"
+        return 1
+    fi
+    
+    local type="$1"
+    local message="$2"
+    local scope="$3"
+    
+    if [[ -n "$scope" ]]; then
+        git commit -m "$type($scope): $message"
+    else
+        git commit -m "$type: $message"
+    fi
+}
+
+# Create and switch to new branch
+gcob() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: gcob <branch_name>"
+        return 1
+    fi
+    
+    git checkout -b "$1"
+}
+
+# Git status with short format and branch info
+gst() {
+    git status --short --branch
+}
+
+# Show git log with graph
+glog() {
+    git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+}
+
+# Sync current branch with main
+gsync() {
+    local current_branch=$(git branch --show-current)
+    git fetch origin
+    git checkout main
+    git pull origin main
+    git checkout "$current_branch"
+    git rebase main
+}
+
+#################
+# Network Functions
+#################
+
+# Get external IP
+myip() {
+    curl -s https://httpbin.org/ip | jq -r '.origin'
+}
+
+# Get local IP
+localip() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        ipconfig getifaddr en0
+    else
+        hostname -I | awk '{print $1}'
+    fi
+}
+
+# Test website response time
+speedtest_url() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: speedtest_url <url>"
+        return 1
+    fi
+    
+    curl -w "Connect: %{time_connect}s\nNamelookup: %{time_namelookup}s\nPreTransfer: %{time_pretransfer}s\nTotal: %{time_total}s\n" -o /dev/null -s "$1"
+}
+
+# Simple HTTP server
+serve() {
+    local port="${1:-8000}"
+    local directory="${2:-.}"
+    
+    echo "Starting HTTP server on port $port in directory $directory"
+    echo "Access at: http://localhost:$port"
+    
+    if command -v python3 >/dev/null 2>&1; then
+        cd "$directory" && python3 -m http.server "$port"
+    elif command -v python >/dev/null 2>&1; then
+        cd "$directory" && python -m SimpleHTTPServer "$port"
+    else
+        echo "Python not found. Cannot start HTTP server."
+        return 1
+    fi
+}
+
+#################
+# Utility Functions
+#################
+
+# Generate random password
+genpass() {
+    local length="${1:-32}"
+    if command -v openssl >/dev/null 2>&1; then
+        openssl rand -base64 "$length" | tr -d "=+/" | cut -c1-"$length"
+    else
+        head /dev/urandom | tr -dc A-Za-z0-9 | head -c "$length" ; echo ''
+    fi
+}
+
+# URL encode/decode
+urlencode() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: urlencode <string>"
+        return 1
+    fi
+    
+    python3 -c "import urllib.parse; print(urllib.parse.quote('$1'))"
+}
+
+urldecode() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: urldecode <string>"
+        return 1
+    fi
+    
+    python3 -c "import urllib.parse; print(urllib.parse.unquote('$1'))"
+}
+
+# JSON pretty print
+jsonpp() {
+    if [[ $# -eq 0 ]]; then
+        python3 -m json.tool
+    else
+        python3 -m json.tool "$1"
+    fi
+}
+
+# Base64 encode/decode
+b64encode() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: b64encode <string>"
+        return 1
+    fi
+    
+    echo -n "$1" | base64
+}
+
+b64decode() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: b64decode <encoded_string>"
+        return 1
+    fi
+    
+    echo "$1" | base64 -d
+}
+
+# Create data URL from file
+dataurl() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: dataurl <file>"
+        return 1
+    fi
+    
+    local mimeType=$(file -b --mime-type "$1")
+    if [[ $mimeType == text/* ]]; then
+        mimeType="${mimeType};charset=utf-8"
+    fi
+    echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
+}
+
+# Quick calculator
+calc() {
+    if [[ $# -eq 0 ]]; then
+        bc -l
+    else
+        echo "$*" | bc -l
+    fi
+}
+
+# Weather
+weather() {
+    local location="${1:-$(curl -s https://ipinfo.io/city 2>/dev/null)}"
+    curl -s "wttr.in/$location"
+}
+
+# QR code generator
+qr() {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: qr <text>"
+        return 1
+    fi
+    
+    curl -s "qrenco.de/$1"
+}
+
+#################
+# System Functions
+#################
+
+# Clean system caches and temporary files
+cleanup() {
+    echo "🧹 Cleaning up system..."
+    
+    # Remove npm cache
+    if command -v npm >/dev/null 2>&1; then
+        npm cache clean --force
+    fi
+    
+    # Remove yarn cache
+    if command -v yarn >/dev/null 2>&1; then
+        yarn cache clean
+    fi
+    
+    # Remove pip cache
+    if command -v pip3 >/dev/null 2>&1; then
+        pip3 cache purge
+    fi
+    
+    # Platform-specific cleanup
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS cleanup
+        sudo rm -rf ~/Library/Caches/*
+        sudo rm -rf /System/Library/Caches/*
+        sudo rm -rf /Library/Caches/*
+        
+        if command -v brew >/dev/null 2>&1; then
+            brew cleanup
+        fi
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux cleanup
+        sudo apt autoremove 2>/dev/null || true
+        sudo apt autoclean 2>/dev/null || true
+    fi
+    
+    echo "✅ Cleanup completed!"
+}
+
+# System information
+sysinfo() {
+    echo "🖥️  System Information"
+    echo "===================="
+    echo "OS: $(uname -s) $(uname -r)"
+    echo "Architecture: $(uname -m)"
+    echo "Hostname: $(hostname)"
+    echo "Uptime: $(uptime | awk '{print $3,$4}' | sed 's/,//')"
+    echo "Shell: $SHELL"
+    echo "Terminal: $TERM"
+    
+    if command -v neofetch >/dev/null 2>&1; then
+        echo ""
+        neofetch
+    fi
+}
+
+#################
+# Help Function
+#################
+
+# Show available jaRule functions
+jarule_help() {
+    echo "🎯 jaRule's Legendary Functions"
+    echo "=============================="
+    echo ""
+    echo "📁 Directory & Navigation:"
+    echo "  mkcd <dir>           - Create directory and cd into it"
+    echo "  up [n]               - Go up n directories (default: 1)"
+    echo "  cdf [path]           - Find and cd to directory using fzf"
+    echo "  tree [depth]         - Show directory tree"
+    echo ""
+    echo "📄 File Operations:"
+    echo "  extract <archive>    - Extract any archive format"
+    echo "  archive <name> <files> - Create archive"
+    echo "  backup <file>        - Create timestamped backup"
+    echo "  ff <name>            - Find file by name"
+    echo "  fd_dir <name>        - Find directory by name"
+    echo ""
+    echo "🚀 Development:"
+    echo "  init_project <type> <name> - Initialize new project"
+    echo "  killport <port>      - Kill process on specific port"
+    echo "  port <port>          - Show what's listening on port"
+    echo "  psgrep <name>        - Find process by name"
+    echo ""
+    echo "🌐 Network:"
+    echo "  myip                 - Get external IP address"
+    echo "  localip              - Get local IP address"
+    echo "  speedtest_url <url>  - Test website response time"
+    echo "  serve [port] [dir]   - Start HTTP server"
+    echo ""
+    echo "🛠️  Utilities:"
+    echo "  genpass [length]     - Generate random password"
+    echo "  urlencode/urldecode  - URL encoding/decoding"
+    echo "  jsonpp [file]        - JSON pretty print"
+    echo "  b64encode/b64decode  - Base64 encoding/decoding"
+    echo "  calc [expression]    - Calculator"
+    echo "  weather [location]   - Get weather info"
+    echo "  qr <text>            - Generate QR code"
+    echo ""
+    echo "🧹 System:"
+    echo "  cleanup              - Clean system caches"
+    echo "  sysinfo              - Show system information"
+    echo ""
+    echo "💡 Type 'jarule_help' anytime to see this help"
+}

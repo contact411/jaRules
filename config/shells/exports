@@ -1,0 +1,265 @@
+# jaRule's Legendary Environment Variables
+# Modern, XDG-compliant, and performance-optimized
+
+#################
+# XDG Base Directory Specification
+#################
+
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp/$(id -u)-runtime-dir}"
+
+# Ensure XDG directories exist
+mkdir -p "$XDG_CONFIG_HOME" "$XDG_DATA_HOME" "$XDG_CACHE_HOME" "$XDG_STATE_HOME"
+
+#################
+# Path Configuration
+#################
+
+# User local binaries (highest priority)
+export PATH="$HOME/.local/bin:$PATH"
+
+# Homebrew paths (macOS)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then
+        # Apple Silicon
+        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+        export HOMEBREW_PREFIX="/opt/homebrew"
+    elif [[ -f "/usr/local/bin/brew" ]]; then
+        # Intel
+        export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+        export HOMEBREW_PREFIX="/usr/local"
+    fi
+fi
+
+# Node.js global packages (XDG compliant)
+export PATH="$XDG_DATA_HOME/npm/bin:$PATH"
+
+# Rust cargo binaries
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Go binaries
+export PATH="$HOME/go/bin:$PATH"
+
+# Python user packages
+export PATH="$HOME/.local/bin:$PATH"
+
+#################
+# Editor Configuration
+#################
+
+# Preferred editor hierarchy
+if command -v code >/dev/null 2>&1; then
+    export EDITOR="code --wait"
+    export VISUAL="code --wait"
+elif command -v nvim >/dev/null 2>&1; then
+    export EDITOR="nvim"
+    export VISUAL="nvim"
+elif command -v vim >/dev/null 2>&1; then
+    export EDITOR="vim"
+    export VISUAL="vim"
+else
+    export EDITOR="nano"
+    export VISUAL="nano"
+fi
+
+# Git editor
+export GIT_EDITOR="$EDITOR"
+
+#################
+# Language and Locale
+#################
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+
+#################
+# Terminal Configuration
+#################
+
+# Enable colors
+export CLICOLOR=1
+export FORCE_COLOR=1
+
+# Terminal capabilities
+export TERM="xterm-256color"
+
+# Less configuration (for man pages and git)
+export LESS="-R -M -i -j.5"
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+
+# Pager configuration
+if command -v bat >/dev/null 2>&1; then
+    export PAGER="bat --style=auto --color=always"
+    export MANPAGER="bat --style=auto --color=always --language=man"
+else
+    export PAGER="less"
+    export MANPAGER="less"
+fi
+
+#################
+# History Configuration
+#################
+
+# Bash history
+export HISTSIZE=10000
+export HISTFILESIZE=20000
+export HISTCONTROL="ignoreboth:erasedups"
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export HISTFILE="$XDG_STATE_HOME/bash/history"
+
+# Zsh history
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export SAVEHIST=10000
+
+#################
+# Development Tools
+#################
+
+# Node.js configuration
+export NODE_REPL_HISTORY="$XDG_CACHE_HOME/node_repl_history"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
+
+# fnm (Fast Node Manager)
+export FNM_DIR="$XDG_DATA_HOME/fnm"
+export FNM_MULTISHELL_PATH="$XDG_CACHE_HOME/fnm_multishell"
+export FNM_VERSION_FILE_STRATEGY="local"
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+
+# Python configuration
+export PYTHONHISTFILE="$XDG_STATE_HOME/python/history"
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python"
+export PYTHONUSERBASE="$XDG_DATA_HOME/python"
+export PIPX_HOME="$XDG_DATA_HOME/pipx"
+export PIPX_BIN_DIR="$HOME/.local/bin"
+
+# Rust configuration
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+
+# Go configuration
+export GOPATH="$XDG_DATA_HOME/go"
+export GOCACHE="$XDG_CACHE_HOME/go-build"
+
+# Docker configuration
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+
+# AWS configuration
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export AWS_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+
+#################
+# Git Configuration
+#################
+
+# Git configuration
+export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
+
+#################
+# SSH Configuration
+#################
+
+# SSH configuration
+export SSH_CONFIG="$XDG_CONFIG_HOME/ssh/config"
+
+#################
+# Application-Specific Configurations
+#################
+
+# Starship prompt
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
+
+# Bat (cat replacement)
+export BAT_CONFIG_PATH="$XDG_CONFIG_HOME/bat/config"
+export BAT_THEME="Catppuccin-mocha"
+
+# FZF configuration
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --color=16"
+if command -v fd >/dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# Ripgrep configuration
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+
+# HTTPie configuration
+export HTTPIE_CONFIG_DIR="$XDG_CONFIG_HOME/httpie"
+
+# Wget configuration
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+
+#################
+# Performance Optimizations
+#################
+
+# Disable homebrew analytics
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_CASK_OPTS="--require-sha"
+
+# Disable .NET telemetry
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Disable Next.js telemetry
+export NEXT_TELEMETRY_DISABLED=1
+
+# Disable Angular CLI analytics
+export NG_CLI_ANALYTICS=false
+
+#################
+# Security Settings
+#################
+
+# GPG configuration
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+
+# Disable less history file (use XDG location instead)
+mkdir -p "$(dirname "$LESSHISTFILE")"
+
+#################
+# Platform-Specific Exports
+#################
+
+# macOS specific
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Disable Gatekeeper quarantine for downloaded files
+    export HOMEBREW_CASK_OPTS="--no-quarantine"
+    
+    # Fix for some GUI applications
+    export PATH="/System/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH"
+fi
+
+# Linux specific
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Make sure XDG_RUNTIME_DIR has correct permissions
+    if [[ ! -d "$XDG_RUNTIME_DIR" ]]; then
+        mkdir -p "$XDG_RUNTIME_DIR"
+        chmod 700 "$XDG_RUNTIME_DIR"
+    fi
+fi
+
+#################
+# Debugging and Development
+#################
+
+# Enable debug mode for development
+# export JARULE_DEBUG=1
+
+# Verbose output for troubleshooting
+# export VERBOSE=1
+
+#################
+# Custom User Exports
+#################
+
+# Load user-specific exports if they exist
+if [[ -f "$XDG_CONFIG_HOME/shells/exports.local" ]]; then
+    source "$XDG_CONFIG_HOME/shells/exports.local"
+fi
