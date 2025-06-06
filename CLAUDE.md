@@ -17,18 +17,26 @@ This is a cross-platform dotfiles repository designed for rapid system setup acr
 ### Repository Structure
 ```
 install.sh / install.ps1     # Entry points for Unix/Windows
-common/                      # Cross-platform configurations
-├── starship.toml           # Universal shell prompt
-├── gitconfig               # Git settings and aliases  
-└── aliases                 # Shell aliases
-platform-specific/          # OS-specific tooling
-├── macos/                  # Homebrew, system defaults
-├── linux/                  # Package management, SSH
-└── windows/                # PowerShell, terminal config
-editors/                    # Editor configurations
-├── vscode/                 # Settings sync, extensions
-├── vim/                    # Sensible defaults, themes
-└── nano/                   # Basic enhancements
+config/                      # XDG-compliant configuration templates
+├── git/                    # Git configuration and global ignore
+│   ├── config.template     # Modern Git config with security & performance
+│   └── ignore_global       # Comprehensive global .gitignore
+├── npm/                    # Node.js and npm configuration
+│   ├── npmrc.template      # Security & performance optimized npm config
+│   └── global-packages.txt # Curated essential global packages
+├── shells/                 # Shell configuration components
+│   ├── aliases             # 100+ intelligent aliases with modern tools
+│   ├── exports             # XDG-compliant environment variables
+│   ├── functions           # Powerful utility functions library
+│   └── zshrc.template      # Performance-optimized zsh configuration
+├── starship/               # Starship prompt configuration
+│   └── starship.toml       # Catppuccin theme with language detection
+└── vscode/                 # VSCode configuration
+    ├── settings.template.json  # Opinionated productivity settings
+    └── extensions.json     # Curated extensions for modern development
+scripts/                    # Installation and setup scripts
+├── setup-node.sh          # fnm and Node.js setup with cross-platform support
+└── install.sh             # Main installation orchestrator (planned)
 ai-rules/                   # AI assistant configurations
 ├── templates/              # AI tool-specific rule templates
 │   ├── cline/             # Cline assistant configurations
@@ -48,13 +56,15 @@ ai-rules/                   # AI assistant configurations
 ### Installation
 ```bash
 # Clone and run full setup
-git clone <repo> && cd dotfiles && ./install.sh
+git clone <repo> && cd jaRules && ./install.sh
 
-# Minimal mode (essentials only)
-./install.sh --minimal
+# Modular installation options  
+./install.sh --dotfiles-only    # Skip AI rules
+./install.sh --rules-only       # Skip dotfiles
+./install.sh --minimal          # Essentials only
 
-# Custom installation
-./install.sh --interactive
+# Individual component setup
+./scripts/setup-node.sh         # Node.js and npm configuration
 ```
 
 ### AI Configuration
@@ -85,6 +95,36 @@ git clone <repo> && cd dotfiles && ./install.sh
 # Test installation on clean system
 ./test/run-ci.sh
 ```
+
+## Dotfiles Architecture
+
+### XDG Base Directory Compliance
+All configurations follow the XDG Base Directory Specification for clean, organized file placement:
+- `$XDG_CONFIG_HOME` (~/.config) - Configuration files
+- `$XDG_DATA_HOME` (~/.local/share) - Application data
+- `$XDG_CACHE_HOME` (~/.cache) - Cache files
+- `$XDG_STATE_HOME` (~/.local/state) - State files (logs, history)
+
+### Template-Based Configuration
+- **Security**: All sensitive data uses environment variable substitution
+- **Portability**: Template files work across different environments
+- **Customization**: Local overrides without modifying base templates
+- **Variable format**: `${VARIABLE_NAME}` for environment substitution
+
+### Modern Tool Integration
+- **fnm** over nvm for Node.js version management (faster, more reliable)
+- **exa** over ls for enhanced directory listings with icons
+- **bat** over cat for syntax-highlighted file viewing
+- **fd** over find for faster, more intuitive file searching
+- **ripgrep** over grep for blazing fast content search
+- **delta** over diff for beautiful Git diffs
+- **starship** for consistent, fast shell prompts
+
+### Performance Optimizations
+- **Lazy loading**: Shell plugins and tools load only when needed
+- **Efficient caching**: npm, shell completions, and tool caches optimized
+- **Minimal startup time**: Shell configuration targets sub-second initialization
+- **Smart detection**: Tools are only configured if they're available
 
 ## Key Implementation Notes
 
