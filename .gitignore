@@ -173,7 +173,7 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-# jaRule Project Settings
+# jaRules Project Settings
 # Claude local settings (permissions, personal configs)
 .claude/settings.local.json
 .claude/history/

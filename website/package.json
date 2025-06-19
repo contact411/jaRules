@@ -2,7 +2,7 @@
   "name": "jarule-website",
   "type": "module",
   "version": "1.0.0",
-  "description": "The legendary jaRule website - Master of All Things Smooth",
+  "description": "The legendary jaRules website - Master of All Things Smooth",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

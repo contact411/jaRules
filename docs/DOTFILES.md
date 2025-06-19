@@ -1,4 +1,4 @@
-# jaRule's Legendary Dotfiles Documentation 📚
+# jaRules' Legendary Dotfiles Documentation 📚
 
 *The complete guide to the most opinionated and sophisticated development environment setup in existence*
 

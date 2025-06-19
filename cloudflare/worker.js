@@ -1,5 +1,5 @@
 /**
- * jaRule Cloudflare Worker
+ * jaRules Cloudflare Worker
  * The legendary gateway to the ultimate development environment
  */
 
@@ -53,7 +53,7 @@ export default {
       if (path === '/health') {
         return new Response(JSON.stringify({ 
           status: 'legendary',
-          message: 'jaRule is ready to transform your development environment',
+          message: 'jaRules is ready to transform your development environment',
           timestamp: new Date().toISOString()
         }), {
           headers: { 
@@ -91,8 +91,8 @@ async function handleSetupScript(request, corsHeaders) {
   
   if (!installScript) {
     return new Response(`#!/bin/bash
-# jaRule Setup Script - Bootstrap Version
-echo "🎯 Welcome to jaRule - Master of All Things Smooth"
+# jaRules Setup Script - Bootstrap Version
+echo "🎯 Welcome to jaRules - Master of All Things Smooth"
 echo "⚠️  Main installer not ready yet. Cloning repository..."
 
 git clone https://github.com/contact411/jaRules.git jarule-setup
@@ -101,12 +101,12 @@ chmod +x scripts/setup-node.sh
 ./scripts/setup-node.sh
 
 echo "✅ Node.js setup completed!"
-echo "💡 Full jaRule installation coming soon..."
+echo "💡 Full jaRules installation coming soon..."
 `, {
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
         'Cache-Control': 'public, max-age=300',
-        'X-jaRule-Version': 'bootstrap',
+        'X-jaRules-Version': 'bootstrap',
         ...corsHeaders
       }
     });
@@ -116,7 +116,7 @@ echo "💡 Full jaRule installation coming soon..."
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=300',
-      'X-jaRule-Version': 'latest',
+      'X-jaRules-Version': 'latest',
       'X-Content-Source': 'github',
       ...corsHeaders
     }
@@ -130,8 +130,8 @@ async function handleModularScript(request, corsHeaders, mode) {
   const installScript = await fetchGitHubFile('scripts/install.sh');
   
   const modularScript = `#!/bin/bash
-# jaRule Modular Setup - ${mode}
-export JARULE_MODE="${mode}"
+# jaRules Modular Setup - ${mode}
+export JARULES_MODE="${mode}"
 ${installScript || generateBootstrapScript(mode)}
 `;
 
@@ -139,7 +139,7 @@ ${installScript || generateBootstrapScript(mode)}
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=300',
-      'X-jaRule-Mode': mode,
+      'X-jaRules-Mode': mode,
       ...corsHeaders
     }
   });
@@ -168,7 +168,7 @@ curl -fsSL https://raw.githubusercontent.com/contact411/jaRules/main/scripts/set
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
       'Cache-Control': 'public, max-age=300',
-      'X-jaRule-Component': 'node',
+      'X-jaRules-Component': 'node',
       ...corsHeaders
     }
   });
@@ -183,7 +183,7 @@ async function handleRootRedirect() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jaRule - Master of All Things Smooth</title>
+    <title>jaRules - Master of All Things Smooth</title>
     <style>
         body {
             font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
@@ -240,7 +240,7 @@ async function handleRootRedirect() {
 </head>
 <body>
     <div class="container">
-        <h1>⚡ jaRule</h1>
+        <h1>⚡ jaRules</h1>
         <p class="tagline">Master of All Things Smooth</p>
         <p>The most opinionated dotfiles in the Joloverse</p>
         
@@ -356,7 +356,7 @@ async function fetchGitHubFile(path) {
  */
 function generateBootstrapScript(mode = 'full') {
   return `#!/bin/bash
-echo "🎯 jaRule Bootstrap Installer - ${mode} mode"
+echo "🎯 jaRules Bootstrap Installer - ${mode} mode"
 echo "⚡ The legendary development environment setup"
 
 # Clone repository
@@ -365,9 +365,9 @@ if ! command -v git >/dev/null 2>&1; then
     exit 1
 fi
 
-echo "📥 Cloning jaRule repository..."
-git clone https://github.com/contact411/jaRules.git ~/jarule-temp
-cd ~/jarule-temp
+echo "📥 Cloning jaRules repository..."
+git clone https://github.com/contact411/jaRules.git ~/jarules-temp
+cd ~/jarules-temp
 
 # Make scripts executable
 chmod +x scripts/*.sh
@@ -384,7 +384,7 @@ case "${mode}" in
         echo "⚠️  AI rules installer coming soon!"
         ;;
     *)
-        echo "🚀 Full jaRule installation..."
+        echo "🚀 Full jaRules installation..."
         if [[ -f "scripts/setup-node.sh" ]]; then
             ./scripts/setup-node.sh
         fi
@@ -392,9 +392,9 @@ case "${mode}" in
 esac
 
 echo "✅ Bootstrap installation completed!"
-echo "💡 Full jaRule features coming soon..."
+echo "💡 Full jaRules features coming soon..."
 
 # Cleanup
-cd ~ && rm -rf ~/jarule-temp
+cd ~ && rm -rf ~/jarules-temp
 `;
 }

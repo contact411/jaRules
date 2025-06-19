@@ -1,4 +1,4 @@
-# jaRule's Legendary Shell Functions
+# jaRules' Legendary Shell Functions
 # Powerful utilities that make development a joy
 
 #################
@@ -483,9 +483,9 @@ sysinfo() {
 # Help Function
 #################
 
-# Show available jaRule functions
+# Show available jaRules functions
 jarule_help() {
-    echo "🎯 jaRule's Legendary Functions"
+    echo "🎯 jaRules' Legendary Functions"
     echo "=============================="
     echo ""
     echo "📁 Directory & Navigation:"

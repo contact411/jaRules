@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# jaRule's Legendary Node.js Setup
+# jaRules' Legendary Node.js Setup
 # Using fnm (Fast Node Manager) for blazing speed across all platforms
 
 set -euo pipefail
@@ -113,7 +113,7 @@ install_node() {
 
 # Setup npm configuration
 setup_npm_config() {
-    log_info "Configuring npm with jaRule's legendary settings..."
+    log_info "Configuring npm with jaRules' legendary settings..."
     
     # Create npm config directory
     mkdir -p "$NPM_CONFIG_DIR"
@@ -147,7 +147,7 @@ EOF
 
 # Install essential global packages
 install_global_packages() {
-    log_info "Installing jaRule's essential global npm packages..."
+    log_info "Installing jaRules' essential global npm packages..."
     
     local packages_file="${SCRIPT_DIR}/../config/npm/global-packages.txt"
     
@@ -203,7 +203,7 @@ setup_shell_integration() {
     # Add fnm initialization if not already present
     if [[ -f "$shell_config" ]] && ! grep -q "fnm env" "$shell_config"; then
         echo "" >> "$shell_config"
-        echo "# jaRule's fnm (Fast Node Manager) initialization" >> "$shell_config"
+        echo "# jaRules' fnm (Fast Node Manager) initialization" >> "$shell_config"
         echo "$fnm_init" >> "$shell_config"
         log_success "fnm initialization added to $shell_config"
     else
@@ -216,7 +216,7 @@ main() {
     # Get script directory for relative paths
     readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     
-    log_info "🚀 Starting jaRule's legendary Node.js setup..."
+    log_info "🚀 Starting jaRules' legendary Node.js setup..."
     
     install_fnm
     setup_fnm_environment

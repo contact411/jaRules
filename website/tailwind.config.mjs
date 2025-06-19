@@ -49,7 +49,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // jaRule brand colors
+        // jaRules brand colors
         'jarule': {
           50: '#f5f1ff',
           100: '#ede5ff',

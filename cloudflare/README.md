@@ -1,6 +1,6 @@
-# jaRule Cloudflare Worker
+# jaRules Cloudflare Worker
 
-This Worker powers the legendary `https://jarule.dev` domain, providing instant access to jaRule's opinionated development environment setup.
+This Worker powers the legendary `https://jarule.dev` domain, providing instant access to jaRules' opinionated development environment setup.
 
 ## 🚀 Endpoints
 
@@ -69,7 +69,7 @@ The worker automatically handles all traffic to `jarule.dev/*` via the routes co
 - API endpoints accessible from web applications
 
 ### Analytics Ready
-- Custom headers for tracking (`X-jaRule-Version`, `X-jaRule-Mode`)
+- Custom headers for tracking (`X-jaRules-Version`, `X-jaRules-Mode`)
 - Structured logging for monitoring
 
 ## 🎯 Usage Examples

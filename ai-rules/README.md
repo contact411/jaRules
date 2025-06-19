@@ -1,10 +1,10 @@
-# jaRule AI Rules & Prompt Templates ⚡
+# jaRules AI Rules & Prompt Templates ⚡
 
 *The most sophisticated AI assistant configurations in the known universe*
 
 ## 🎯 Overview
 
-This directory contains jaRule's legendary collection of AI rules and prompt templates, designed to transform any AI coding assistant into a productivity powerhouse. From Cline to Claude-Code, from foundational requirements to PRDs - we've got the templates that make AI assistants sing.
+This directory contains jaRules' legendary collection of AI rules and prompt templates, designed to transform any AI coding assistant into a productivity powerhouse. From Cline to Claude-Code, from foundational requirements to PRDs - we've got the templates that make AI assistants sing.
 
 ## 📁 Directory Structure
 
@@ -59,7 +59,7 @@ ai-rules/
 
 ## 🧠 Philosophy
 
-Every template in jaRule follows these principles:
+Every template in jaRules follows these principles:
 
 1. **Opinionated Excellence**: No choice paralysis - just the right way to do things
 2. **Context-Aware**: Templates that understand your project structure and goals  

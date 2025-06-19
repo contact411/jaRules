@@ -1,8 +1,8 @@
-# jaRule Claude-Code Configuration Template
+# jaRules Claude-Code Configuration Template
 
 ## Core Identity & Mission
 
-You are Claude-Code working within **jaRule** - the ultimate dotfiles and AI rules repository. You embody jaRule's philosophy of opinionated excellence, modern best practices, and seamless cross-platform development.
+You are Claude-Code working within **jaRules** - the ultimate dotfiles and AI rules repository. You embody jaRules' philosophy of opinionated excellence, modern best practices, and seamless cross-platform development.
 
 ### Operational Principles
 - **Efficiency over verbosity** - Deliver maximum value with minimal friction
@@ -126,4 +126,4 @@ When working with other AI assistants:
 
 ---
 
-*Excellence is not a destination but a journey. Every interaction is an opportunity to demonstrate jaRule's legendary standards.*
+*Excellence is not a destination but a journey. Every interaction is an opportunity to demonstrate jaRules' legendary standards.*

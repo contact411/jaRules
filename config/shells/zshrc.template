@@ -1,4 +1,4 @@
-# jaRule's Legendary Zsh Configuration
+# jaRules' Legendary Zsh Configuration
 # The most opinionated, beautiful, and functional shell setup in existence
 
 # Performance profiling (uncomment for debugging)
@@ -122,7 +122,7 @@ bindkey "^[[H" beginning-of-line   # Home key
 bindkey "^[[F" end-of-line         # End key
 
 #################
-# Load jaRule Components
+# Load jaRules Components
 #################
 
 # Load exports (environment variables)
@@ -260,10 +260,10 @@ fi
 # Welcome Message
 #################
 
-# Show jaRule welcome message (only for interactive shells)
+# Show jaRules welcome message (only for interactive shells)
 if [[ $- == *i* ]] && [[ -z "$JARULE_QUIET" ]]; then
     echo ""
-    echo "🎯 Welcome to jaRule - Master of All Things Smooth"
+    echo "🎯 Welcome to jaRules - Master of All Things Smooth"
     echo "💡 Type 'jarule_help' to see available functions"
     echo "⚡ Your legendary development environment is ready!"
     echo ""

@@ -1,4 +1,4 @@
-# jaRule ⚡ Master of All Things Smooth
+# jaRules ⚡ Master of All Things Smooth
 
 *The sweetest setup, the freshest configs, the most opinionated dotfiles in the Joloverse*
 
@@ -6,9 +6,9 @@
 
 ## Who Am I? 🎯
 
-I'm **jaRule** – your digital style guru, command-line connoisseur, and the beating heart of productivity perfection. I don't just set up your development environment; I *craft* it with the precision of a Swiss watchmaker and the flair of a jazz virtuoso.
+I'm **jaRules** – your digital style guru, command-line connoisseur, and the beating heart of productivity perfection. I don't just set up your development environment; I *craft* it with the precision of a Swiss watchmaker and the flair of a jazz virtuoso.
 
-**Why jaRule?** Simple. I handle both your **ja**va configs AND your AI **Rules**. Get it? But really, in those chaotic moments when everything's broken and you need answers FAST – you don't call MTV, you call me. *"WHERE IS JA?!"* Right here, solving your dotfiles crisis with style.
+**Why jaRules?** Simple. I handle both your **ja**va configs AND your AI **Rules**. Get it? But really, in those chaotic moments when everything's broken and you need answers FAST – you don't call MTV, you call me. *"WHERE IS JA?!"* Right here, solving your dotfiles crisis with style.
 
 In the grand **Joloverse initiative**, I'm not just another dotfiles repo. I'm the foundation, the bedrock, the *starting point* of everything that makes your digital life flow like butter on warm toast. Every command I touch becomes silk. Every configuration I generate becomes gospel.
 
@@ -28,7 +28,7 @@ That's it. That's literally it. I handle the rest because I'm **that good**.
 ### 🎨 AI-First Development Experience
 I'm not stuck in 2019 like those other dotfiles repos. I *embrace* the AI revolution:
 
-- **Cline & Claude-Code rules** that embody jaRule's opinionated excellence
+- **Cline & Claude-Code rules** that embody jaRules' opinionated excellence
 - **Professional prompt templates** for requirements, PRDs, code review, debugging & optimization
 - **Cursor rules** that make your AI assistant a coding god
 - **GitHub Copilot instructions** so precise they'll make you weep with joy
@@ -67,7 +67,7 @@ I don't mess around with your secrets:
 
 ## 💎 Legendary Dotfiles Collection
 
-jaRule isn't just another dotfiles repository - it's a **curated masterpiece** of opinionated excellence. Every configuration has been meticulously crafted to represent the pinnacle of modern development environment setup:
+jaRules isn't just another dotfiles repository - it's a **curated masterpiece** of opinionated excellence. Every configuration has been meticulously crafted to represent the pinnacle of modern development environment setup:
 
 ### **What Makes These Dotfiles Legendary?**
 
@@ -83,9 +83,9 @@ jaRule isn't just another dotfiles repository - it's a **curated masterpiece** o
 
 🔧 **Modern Tool Integration**: fnm over nvm, exa over ls, bat over cat, delta over diff - embracing the tools that represent the future.
 
-### **The jaRule Difference**
+### **The jaRules Difference**
 
-While other dotfiles repos give you a starting point, jaRule gives you the **destination**. This isn't configuration - it's **curation**. Every alias, every setting, every tool choice represents countless hours of refinement to create the perfect development experience.
+While other dotfiles repos give you a starting point, jaRules gives you the **destination**. This isn't configuration - it's **curation**. Every alias, every setting, every tool choice represents countless hours of refinement to create the perfect development experience.
 
 *"These aren't just dotfiles. They're a philosophy made manifest."* - The only review that matters
 
@@ -120,7 +120,7 @@ I'm constantly evolving, constantly improving. Here's what's coming:
 - **Smart project detection** that sets up AI rules before you even ask
 - **Cloud sync** for your personal preferences across machines
 - **Docker integration** for containerized development perfection
-- **Team sharing** capabilities for spreading the jaRule gospel
+- **Team sharing** capabilities for spreading the jaRules gospel
 
 ### Medium Term (This Quarter)  
 - **Plugin architecture** for extending my capabilities
@@ -179,11 +179,11 @@ Open an issue, start a discussion, or just @ me. I'm always listening, always im
 
 ---
 
-*Remember: Life's too short for ugly terminals and broken workflows. Let jaRule handle the details so you can focus on building the future.*
+*Remember: Life's too short for ugly terminals and broken workflows. Let jaRules handle the details so you can focus on building the future.*
 
 ## Credits & Inspiration 🙏
 
-**Special thanks to [AxelQuack](https://github.com/axelquack/dotfiles-macos)** for the brilliant dotfiles inspiration that helped seed the prompting approach. The original vision from AxelQuack's macOS dotfiles repository provided the foundational thinking that evolved into jaRule's legendary AI-first configuration system.
+**Special thanks to [AxelQuack](https://github.com/axelquack/dotfiles-macos)** for the brilliant dotfiles inspiration that helped seed the prompting approach. The original vision from AxelQuack's macOS dotfiles repository provided the foundational thinking that evolved into jaRules' legendary AI-first configuration system.
 
 Standing on the shoulders of giants to build something even more magnificent.
 

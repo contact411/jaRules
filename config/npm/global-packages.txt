@@ -1,4 +1,4 @@
-# jaRule's Essential Global npm Packages
+# jaRules' Essential Global npm Packages
 # The legendary toolkit for modern development
 
 # Development Tools
