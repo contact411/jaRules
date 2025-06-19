@@ -1,0 +1,17 @@
+{
+  "name": "jarules-cloudflare-worker",
+  "version": "1.0.0",
+  "description": "jaRules Cloudflare Worker - The legendary gateway to the ultimate development environment",
+  "main": "worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "echo 'Worker build complete - ready for deployment'"
+  },
+  "keywords": ["jarules", "dotfiles", "cloudflare", "worker"],
+  "author": "jaRules",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

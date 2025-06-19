@@ -1,13 +1,14 @@
-# jaRule Cloudflare Worker Configuration
+# jaRules Cloudflare Worker Configuration
 
 name = "jarule-dev"
-main = "worker.js"
+main = "cloudflare/worker.js"
 compatibility_date = "2024-06-06"
 compatibility_flags = ["nodejs_compat"]
 
 # Routes configuration
 routes = [
-  { pattern = "jarule.dev/*", zone_name = "jarule.dev" }
+  { pattern = "jarule.dev/*", zone_name = "jarule.dev" },
+  { pattern = "jarules.dev/*", zone_name = "jarules.dev" }
 ]
 
 # Worker settings
@@ -27,5 +28,6 @@ name = "jarule-dev-staging"
 [env.production]
 name = "jarule-dev"
 routes = [
-  { pattern = "jarule.dev/*", zone_name = "jarule.dev" }
+  { pattern = "jarule.dev/*", zone_name = "jarule.dev" },
+  { pattern = "jarules.dev/*", zone_name = "jarules.dev" }
 ]
