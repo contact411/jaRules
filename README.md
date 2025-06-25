@@ -1,16 +1,58 @@
-# jaRules ⚡ Master of All Things Smooth
+# jaRules ⚡
 
-*The sweetest setup, the freshest configs, the most opinionated dotfiles in the Joloverse*
+> AI-powered development environment setup with opinionated dotfiles and intelligent configuration management.
 
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform Support](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)](#platform-support)
+[![Installation](https://img.shields.io/badge/installation-one--command-green)](#quick-start)
 
-## Who Am I? 🎯
+**jaRules** is a comprehensive development environment setup tool that combines traditional dotfiles with AI-first configuration. It provides cross-platform support, security-focused templates, and intelligent defaults for modern development workflows.
 
-I'm **jaRules** – your digital style guru, command-line connoisseur, and the beating heart of productivity perfection. I don't just set up your development environment; I *craft* it with the precision of a Swiss watchmaker and the flair of a jazz virtuoso.
+## Quick Start
 
-**Why jaRules?** Simple. I handle both your **ja**va configs AND your AI **Rules**. Get it? But really, in those chaotic moments when everything's broken and you need answers FAST – you don't call MTV, you call me. *"WHERE IS JA?!"* Right here, solving your dotfiles crisis with style.
+```bash
+# One-command installation
+curl -fsSL https://jarule.dev/setup | sh
 
-In the grand **Joloverse initiative**, I'm not just another dotfiles repo. I'm the foundation, the bedrock, the *starting point* of everything that makes your digital life flow like butter on warm toast. Every command I touch becomes silk. Every configuration I generate becomes gospel.
+# Options available
+./install.sh --help
+```
+
+## Features
+
+- 🚀 **One-command setup** across macOS, Linux, and Windows
+- 🤖 **AI-first configuration** with intelligent templates
+- 🔒 **Security-focused** with no hardcoded secrets
+- ⚡ **Performance-optimized** with modern tool integration
+- 🎨 **Consistent theming** with Catppuccin color scheme
+- 📦 **XDG-compliant** directory structure
+
+## Platform Support
+
+| Platform | Status | Package Manager | Notes |
+|----------|--------|----------------|---------|
+| macOS | ✅ Full | Homebrew | Complete feature set |
+| Linux | ✅ Full | apt/yum/pacman | Multi-distro support |
+| Windows | ✅ Full | Chocolatey/Scoop | PowerShell + WSL2 |
+
+## Installation Options
+
+```bash
+# Complete installation (recommended)
+./install.sh
+
+# Dotfiles only (skip AI rules)
+./install.sh --dotfiles-only
+
+# AI rules only (skip dotfiles)
+./install.sh --rules-only
+
+# Minimal installation
+./install.sh --minimal
+
+# Force overwrite existing configs
+./install.sh --force
+```
 
 ## What I Do (And Do Better Than Anyone Else) 💎
 
