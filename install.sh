@@ -239,12 +239,12 @@ create_xdg_directories() {
 # Install individual components
 install_git_config() {
     log_info "Installing Git configuration"
-    "$JARULES_DIR/scripts/setup-git.sh"
+    "$JARULES_DIR/scripts/setup-git-script.sh"
 }
 
 install_shell_config() {
     log_info "Installing Shell configuration"
-    "$JARULES_DIR/scripts/setup-shell.sh"
+    "$JARULES_DIR/scripts/setup-shell-script.sh"
 }
 
 install_node_setup() {
@@ -254,17 +254,17 @@ install_node_setup() {
 
 install_editor_config() {
     log_info "Installing Editor configurations"
-    "$JARULES_DIR/scripts/setup-editors.sh"
+    "$JARULES_DIR/scripts/setup-editors-script.sh"
 }
 
 install_ai_rules() {
     log_info "Installing AI rules and templates"
-    "$JARULES_DIR/scripts/setup-ai-rules.sh"
+    "$JARULES_DIR/scripts/setup-ai-rules-script.sh"
 }
 
 install_essential_tools() {
     log_info "Installing essential tools"
-    "$JARULES_DIR/scripts/setup-tools.sh"
+    "$JARULES_DIR/scripts/setup-tools-script.sh"
 }
 
 # The main installation flow
