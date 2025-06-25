@@ -169,6 +169,32 @@ git clone https://github.com/YOUR_USERNAME/jaRules.git
 cd jaRules && ./install.sh
 ```
 
+## Troubleshooting 🔧
+
+### Installation Issues
+
+**Script Permission Errors**: If you encounter "Permission denied" errors during installation:
+```bash
+# Make scripts executable
+chmod +x scripts/*.sh
+# Or if running in a mixed environment
+bash -c "chmod +x /path/to/jarules/scripts/*.sh"
+```
+
+**Git Circular Include Error**: If you see "exceeded maximum include depth" in Git:
+```bash
+# Check for circular includes in your Git config
+git config --list --show-origin | grep include
+# Remove any circular references in ~/.config/git/config or ~/.gitconfig
+```
+
+**Platform Detection Issues**: The installer detects your platform automatically, but if you're running in a mixed environment (like bash on Windows), it may detect the wrong platform. This is usually fine as the scripts adapt to the actual environment.
+
+**Missing Dependencies**: The installer will warn you about missing modern CLI tools. Install them using your system's package manager:
+- **macOS**: `brew install exa bat fd ripgrep fzf git-delta duf dust procs zoxide`
+- **Linux**: `apt install exa bat fd-find ripgrep fzf git-delta duf dust procs zoxide` (Ubuntu/Debian)
+- **Windows**: Use Chocolatey, Scoop, or WSL for these tools
+
 ## Contact the Master 📬
 
 Found a bug? (Impossible, but humor me)  
